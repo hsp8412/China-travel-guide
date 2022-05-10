@@ -1,7 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const { City, validateCity } = require('../models/city');
-const {Province} = require("../models/province");
 const {Region, validateRegion} = require("../models/region");
 
 //Get all regions
@@ -19,14 +17,17 @@ router.get('/:id',async (req, res) => {
     res.send(result);
 });
 
-//Post new city
+//Post new region
 router.post('/', async(req,res)=>{
     const {error} = validateRegion(req.body)
     if(error){
         return res.status(400).send(error.details[0].message);
     }
-
-    const region = new Region(req.body)
+    let region = await Region.findOne({name:req.body.name})
+    if(region){
+        return res.status(400).send("Region already exists.");
+    }
+    region = new Region(req.body)
     await region.save()
 
     res.send(region)

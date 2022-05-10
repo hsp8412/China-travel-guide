@@ -39,7 +39,12 @@ router.post('/', async(req,res)=>{
     const province = await Province.findById(req.body.provinceId);
     if (!province) return res.status(400).send("Invalid province.");
 
-    const city = new City(req.body)
+    let city = await City.findOne({name:req.body.name})
+    if(city){
+        return res.status(400).send("Region already exists.");
+    }
+
+    city = new City(req.body)
     await city.save()
 
     res.send(city)

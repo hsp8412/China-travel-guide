@@ -35,7 +35,6 @@ const citySchema = new mongoose.Schema({
     },
     provinceId: {
         type: mongoose.Types.ObjectId,
-        required:true
     },
     image:{
         type: String,
@@ -43,6 +42,10 @@ const citySchema = new mongoose.Schema({
     },
     description:{
         type:String,
+        required:true
+    },
+    isDAM:{
+        type:Boolean,
         required:true
     }
 });
@@ -59,9 +62,10 @@ function validateCity(city) {
         trainStation:joi.array().items(joi.string().max(100)),
         hasRapidTransit:joi.boolean().required(),
         tags:joi.array().items(joi.string().max(50)),
-        provinceId:joi.string().required().max(25),
+        provinceId:joi.string().max(25),
         image:joi.string().required().max(2048),
-        description:joi.string().max(300).required()
+        description:joi.string().max(300).required(),
+        isDAM: joi.boolean()
     }).unknown(true);
     return schema.validate(city);
 }
