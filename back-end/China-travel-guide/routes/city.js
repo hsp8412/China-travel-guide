@@ -36,8 +36,12 @@ router.post('/', async(req,res)=>{
         return res.status(400).send(error.details[0].message);
     }
 
-    const province = await Province.findById(req.body.provinceId);
-    if (!province) return res.status(400).send("Invalid province.");
+    if(req.body.provinceId){
+        const province = await Province.findById(req.body.provinceId);
+        if (!province) return res.status(400).send("Invalid province.");
+        console.log(province)
+    }
+
 
     let city = await City.findOne({name:req.body.name})
     if(city){
