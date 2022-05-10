@@ -52,6 +52,18 @@ router.post('/', async(req,res)=>{
         return res.status(400).send(error.details[0].message);
     }
 
+    if(req.body.seasonId){
+        const season = await Season.findById(req.body.seasonId)
+        if(!season){
+            return res.status(400).send("Invalid season ID.")
+        }
+    }
+
+    const city = await City.findById(req.body.cityId)
+    if(!city){
+        return res.status(400).send("Invalid city ID.")
+    }
+
     const mustDo = new MustDo(req.body)
     await mustDo.save()
 

@@ -34,7 +34,7 @@ const MustDo = mongoose.model('MustDo', mustDoSchema, "mustDo");
 function validateMustDo(mustDo) {
     const schema = joi.object({
         name:joi.string().max(100).required(),
-        description:joi.string().max(300).required(),
+        description:joi.string().max(1000).required(),
         image:joi.string().max(2048).required(),
         seasonsId:joi.array().items(joi.string().max(25)),
         cost:joi.number().max(1000),
