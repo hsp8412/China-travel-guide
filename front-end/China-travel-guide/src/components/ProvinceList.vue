@@ -1,7 +1,10 @@
 <template>
   <div class="container">
     <div :key="province.id" v-for="province in provinces">
-      <ProvinceCard :province="province"/>
+      <ProvinceCard
+        :province="province"
+        @select-province="$emit('select-province', province.id)"
+      />
     </div>
   </div>
 </template>
@@ -11,10 +14,10 @@ import ProvinceCard from "@/components/ProvinceCard.vue";
 export default {
   name: "ProvinceList",
   props: {
-    provinces: Array
+    provinces: Array,
   },
   components: {
-    ProvinceCard
+    ProvinceCard,
   },
-}
+};
 </script>
