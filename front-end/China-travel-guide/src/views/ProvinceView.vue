@@ -1,4 +1,8 @@
 <template>
+  <div>
+    <h1 class="pt-3">Welcome!</h1>
+    <h2>Choose a province: </h2>
+  </div>
   <ProvinceList :provinces="provinces"/>
 </template>
 
@@ -26,3 +30,10 @@ export default {
   }
 }
 </script>
+
+<style>
+.welcome-text{
+  font-family: 'Poppins', sans-serif;
+  font-weight: bold;
+}
+</style>

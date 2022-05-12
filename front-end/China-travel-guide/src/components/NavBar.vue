@@ -1,6 +1,7 @@
 <template>
-  <div class="nav-container">
-
+  <div class="nav-container d-flex align-items-center">
+    <font-awesome-icon :icon="['fas', 'house']" class="icon px-2"/>
+    <font-awesome-icon :icon="['fas', 'arrow-left-long']" class="icon px-2"/>
   </div>
 </template>
 
@@ -14,6 +15,10 @@ export default {
 .nav-container{
   height: 40px;
   width: 100%;
-  background: darkseagreen;
+  background: deepskyblue;
+}
+.icon{
+  height: 30px;
+  width: 30px;
 }
 </style>
