@@ -1,10 +1,7 @@
 <template>
   <div class="container">
-    <div :key="province.id" v-for="province in provinces">
-      <ProvinceCard
-        :province="province"
-        @select-province="$emit('select-province', province.id)"
-      />
+    <div :key="province._id" v-for="province in provinces">
+      <ProvinceCard :province="province" />
     </div>
   </div>
 </template>

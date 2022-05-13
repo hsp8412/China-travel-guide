@@ -1,11 +1,11 @@
 <template>
   <router-link
-    :to="{ name: 'cities', params: { provinceId: `${province._id}` } }"
+    :to="{ name: 'mustDos', params: { cityId: `${city._id}` } }"
     style="text-decoration: none"
   >
     <div class="card row my-3" :class="leftBorderColor">
       <div class="col-4 my-auto">
-        <p class="card-title mb-0">{{ province.name }}</p>
+        <p class="card-title mb-0">{{ city.name }}</p>
       </div>
       <div class="col-8 my-auto">
         <p class="card-text mb-0">{{ renderTags() }}</p>
@@ -15,12 +15,13 @@
 </template>
 
 <script>
+import { getProvinceById } from "../../service/provinceService";
 import { getRegion } from "@/service/regionService";
 
 export default {
-  name: "ProvinceCard",
+  name: "CityCard",
   props: {
-    province: Object,
+    city: Object,
   },
   data() {
     return {
@@ -29,22 +30,24 @@ export default {
   },
   methods: {
     renderTags() {
-      if (this.province.tags.length < 3) {
+      if (this.city.tags.length < 3) {
         let tagString = "";
-        this.province.tags.forEach((tag) => {
+        this.city.tags.forEach((tag) => {
           const tagPiece = `${tag}, `;
           tagString += tagPiece;
         });
         return tagString.slice(0, -2);
       } else {
-        return `${this.province.tags[0]}, ${this.province.tags[1]}, ${this.province.tags[2]}`;
+        return `${this.city.tags[0]}, ${this.city.tags[1]}, ${this.city.tags[2]}`;
       }
     },
   },
   async created() {
-    const regionId = this.province.regionId;
-    console.log(regionId);
-    const res = await getRegion(regionId);
+    const provinceId = this.city.provinceId;
+    console.log(provinceId);
+    let res = await getProvinceById(provinceId);
+    const province = res.data;
+    res = await getRegion(province.regionId);
     console.log(res.data.name);
     switch (res.data.name) {
       case "North China":

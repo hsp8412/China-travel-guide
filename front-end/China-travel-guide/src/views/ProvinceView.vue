@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h1 class="pt-3">Welcome!</h1>
+    <h1 class="pt-3 welcome-text">Welcome!</h1>
     <h2>Choose a province:</h2>
   </div>
-  <ProvinceList :provinces="provinces" @select-province="selectProvince" />
+  <ProvinceList :provinces="provinces" />
 </template>
 
 <script>
