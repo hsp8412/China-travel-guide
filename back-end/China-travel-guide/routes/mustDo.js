@@ -22,28 +22,28 @@ router.get("/:id", async (req, res) => {
 });
 
 //get mustDos by city
-router.get("/:cityId", async (req, res) => {
-  const city = await City.findOne(req.params.cityId);
+router.get("/city/:cityId", async (req, res) => {
+  const city = await City.findOne({ _id: req.params.cityId });
   if (!city) {
     return res.status(404).send("The given city is not valid.");
   }
-  const result = MustDo.find({ cityId: req.params.cityId });
+  const result = await MustDo.find({ cityId: req.params.cityId });
   res.send(result);
 });
 
 //get mustDos by season and city
 router.get("/:cityId/:seasonId", async (req, res) => {
-  const city = await City.findOne(req.params.cityId);
+  const city = await City.findOne({ _id: req.params.cityId });
   if (!city) {
     return res.status(404).send("The given city is not valid.");
   }
 
-  const season = await Season.findOne(req.params.seasonId);
-  if (!city) {
+  const season = await Season.findOne({ _id: req.params.seasonId });
+  if (!season) {
     return res.status(404).send("The given season is not valid.");
   }
 
-  const result = MustDo.find({
+  const result = await MustDo.find({
     seasonId: req.params.seasonId,
     cityId: req.params.cityId,
   });
