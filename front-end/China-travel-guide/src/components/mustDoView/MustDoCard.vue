@@ -4,14 +4,21 @@
     :class="leftBorderColor"
   >
     <p class="must-do-card-title mt-2">{{ mustDo.name }}</p>
-    <p class="must-do-card-text">{{ mustDo.description }}</p>
+    <!--    <p class="must-do-card-text" style="white-space: pre-line">-->
+    <!--      {{ mustDo.description }}-->
+    <!--    </p>-->
+    <nl2br tag="p" :text="mustDo.description" class="must-do-card-text" />
     <img :src="mustDo.image" alt="must_do_img" class="must-do-img mb-3" />
   </div>
 </template>
 
 <script>
+import Nl2br from "vue3-nl2br/src/nl2br";
 export default {
   name: "MustDoCard",
+  components: {
+    Nl2br,
+  },
   props: {
     mustDo: Object,
     region: String,
@@ -20,7 +27,6 @@ export default {
     return { leftBorderColor: "" };
   },
   methods: {
-    renderSeasons() {},
     renderLeftBorderColor() {
       switch (this.region) {
         case "North China":
@@ -52,6 +58,12 @@ export default {
       immediate: true,
       handler() {
         this.renderLeftBorderColor();
+      },
+    },
+    mustDo: {
+      immediate: true,
+      handler() {
+        console.log(this.mustDo.description);
       },
     },
   },

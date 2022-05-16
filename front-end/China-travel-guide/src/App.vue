@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import NavBar from "./components/NavBar.vue"
-
+import { RouterLink, RouterView } from "vue-router";
+import NavBar from "./components/NavBar.vue";
 </script>
 
 <template>
-  <NavBar/>
+  <NavBar />
   <div><RouterView /></div>
 </template>
 
@@ -16,5 +15,4 @@ import NavBar from "./components/NavBar.vue"
   padding: 1rem;
   font-weight: normal;
 }
-
 </style>
