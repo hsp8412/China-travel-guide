@@ -1,23 +1,27 @@
 <template>
-  <div
-    class="container d-flex flex-column must-do-card my-3"
-    :class="leftBorderColor"
-  >
-    <p class="must-do-card-title mt-2">{{ mustDo.name }}</p>
-    <!--    <p class="must-do-card-text" style="white-space: pre-line">-->
-    <!--      {{ mustDo.description }}-->
-    <!--    </p>-->
-    <nl2br tag="p" :text="mustDo.description" class="must-do-card-text" />
-    <img :src="mustDo.image" alt="must_do_img" class="must-do-img mb-3" />
+  <div class="container must-do-card my-3 px-4 py-3" :class="leftBorderColor">
+    <div class="row">
+      <div class="container col-12 col-md-6 p-3">
+        <p class="must-do-card-title mb-4">{{ mustDo.name }}</p>
+        <p class="must-do-card-content">
+          <Markdown :source="mustDo.description" />
+        </p>
+      </div>
+      <div
+        class="container col-12 col-md-6 d-flex justify-content-center align-items-center p-3"
+      >
+        <img :src="mustDo.image" alt="" class="rounded must-do-img" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import Nl2br from "vue3-nl2br/src/nl2br";
+import Markdown from "vue3-markdown-it";
 export default {
   name: "MustDoCard",
   components: {
-    Nl2br,
+    Markdown,
   },
   props: {
     mustDo: Object,
@@ -81,17 +85,16 @@ export default {
 .must-do-card-title {
   font-family: "Poppins", sans-serif;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 30px;
 }
-.must-do-card-text {
+.must-do-card-content {
   font-family: "Poppins", sans-serif;
   font-weight: normal;
-  font-size: 15px;
+  font-size: 18px;
 }
+
 .must-do-img {
-  width: 80%;
-  height: auto;
-  margin-left: 10%;
-  margin-right: 10%;
+  max-width: 500px;
+  width: 100%;
 }
 </style>

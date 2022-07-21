@@ -16,7 +16,4 @@ library.add(fas, faHouse);
 const app = createApp(App);
 app.use(router);
 
-app
-  .component("font-awesome-icon", FontAwesomeIcon)
-  .component("nl2br", Nl2br)
-  .mount("#app");
+app.component("font-awesome-icon", FontAwesomeIcon).mount("#app");

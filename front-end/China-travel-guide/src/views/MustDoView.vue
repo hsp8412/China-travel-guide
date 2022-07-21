@@ -1,6 +1,12 @@
 <template>
-  <CityInfo :city="city" :province="province" :region="region" />
-  <CityDesc :city="city" />
+  <div class="row mt-4">
+    <div class="col-12 col-md-6">
+      <CityInfo :city="city" :province="province" :region="region" />
+    </div>
+    <div class="col-12 col-md-6">
+      <CityDesc :city="city" />
+    </div>
+  </div>
   <MustDoList :mustDos="mustDos" :region="region.name" />
 </template>
 

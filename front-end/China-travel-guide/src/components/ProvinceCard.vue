@@ -3,7 +3,7 @@
     :to="{ name: 'cities', params: { provinceId: `${province._id}` } }"
     style="text-decoration: none"
   >
-    <div class="card row my-3" :class="leftBorderColor">
+    <div class="card row my-2" :class="leftBorderColor">
       <div class="col-4 my-auto">
         <p class="card-title mb-0">{{ province.name }}</p>
       </div>
